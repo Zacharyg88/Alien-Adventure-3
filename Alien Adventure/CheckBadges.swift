@@ -9,34 +9,23 @@
 extension Hero {
     
     func checkBadges(badges: [Badge], requestTypes: [UDRequestType]) -> Bool {
-        var correctBadgeCheck = Int()
-        var badgeCopy = [UDRequestType]()
+        var badgeCheck = Bool ()
+        var badgeCopy = [UDRequestType] ()
         for b in badges {
             badgeCopy.append(b.requestType)
         }
-            for r in requestTypes {
-                if badgeCopy.count >= 1 {
+        for r in requestTypes {
                 if badgeCopy.contains(r) {
-                    correctBadgeCheck += 1
-                   // print(badgeCopy)
-                    //badgeCopy.remove(at: 0)
-                    //print(badgeCopy)
+                    print(r)
+                    badgeCheck = true
+                }else {
+                    badgeCheck = false
+                    break
                 }
             }
+        return badgeCheck
         }
-    
-        print(correctBadgeCheck)
-        print(badges.count)
-        if correctBadgeCheck == badges.count {
-            correctBadgeCheck = 0
-            return true
-        }else{
-            correctBadgeCheck = 0
-            return false
-        }
-        
-        
-    }
-    
-}
+  
+ }
+
 
