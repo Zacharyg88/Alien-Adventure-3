@@ -54,14 +54,24 @@ class SettingsViewController: UIViewController {
     // MARK: Implementing Actions
     
     func switchLevel(segmentControl: UISegmentedControl) {
-        print("level control has changed!")
+        //print("level control has changed!")
+        print(Settings.Common.Level)
+        Settings.Common.Level = segmentControl.selectedSegmentIndex
+        print(Settings.Common.Level)
+        
     }
     
     func showBadges(switchControl: UISwitch) {
-        print("show badges switch has changed!")
+        //print("show badges switch has changed!")
+        if switchControl.isOn {
+            Settings.Common.ShowBadges = true
+        }
     }
     
     func startGame() {
-        print("start button has been pressed!")
+        //print("start button has been pressed!")
+       // Settings.Common.startGame
+        let alienAdventureViewController = self.storyboard!.instantiateViewController(withIdentifier: "AlienAdventureViewController") as! AlienAdventureViewController
+        self.present(alienAdventureViewController, animated: true, completion: nil)
     }
 }
