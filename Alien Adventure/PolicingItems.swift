@@ -9,43 +9,36 @@
 extension Hero {
     
     func policingItems(inventory: [UDItem], policingFilter: (UDItem) throws -> Void) -> [UDPolicingError:Int] {
-        return [UDPolicingError:Int]()
-        var itemDict: [UDPolicingError:Int] = [UDPolicingError.nameContainsLaser:0, UDPolicingError.itemFromCunia:0, UDPolicingError.valueLessThan10:0]
+        //return [UDPolicingError:Int]()
+        var itemDict = [UDPolicingError:Int]()
+        itemDict [UDPolicingError.itemFromCunia] = 0
+        itemDict [UDPolicingError.nameContainsLaser] = 0
+        itemDict [UDPolicingError.valueLessThan10] = 0
         for i in inventory {
             do {
                 try policingFilter(i)
             }
                 catch UDPolicingError.nameContainsLaser {
-                    for d in itemDict {
-                        if d.key == UDPolicingError.nameContainsLaser {
-                            d.value += 1
-                        }
-                    }
+                    itemDict [UDPolicingError.nameContainsLaser]! += 1
                 }
                 catch UDPolicingError.itemFromCunia {
-                    for d in itemDict {
-                        if d.key == UDPolicingError.itemFromCunia {
-                            d.value += 1
-                        }
-                    }
+                    itemDict [UDPolicingError.itemFromCunia]! += 1
             }
                 catch UDPolicingError.valueLessThan10 {
-                    for d in itemDict {
-                        if d.key == UDPolicingError.valueLessThan10 {
-                            d.value += 1
-                        }
-                    }
+                    itemDict [UDPolicingError.valueLessThan10]! += 1
                     }
             catch {
                 
             }
             
                 }
-            }
+    
+    
                 
-            
+         return itemDict
+    }
         }
-    }    
-}
+
+
 
 // If you have completed this function and it is working correctly, feel free to skip this part of the adventure by opening the "Under the Hood" folder, and making the following change in Settings.swift: "static var RequestsToSkip = 1"
